@@ -1,5 +1,7 @@
 ### stonefish_ros2 package for ROS
 
+> **Fork note (`jazzy` branch):** upstream stonefish_ros2 1.6.0 ([patrykcieslak/stonefish_ros2](https://github.com/patrykcieslak/stonefish_ros2)) plus: a compile fix for the event camera publisher (`rclcpp::Time` + `Duration`) and the `libpcl-all-dev` rosdep key instead of the unresolvable `pcl`. Pair it with the `jazzy` branch of [lmbalves/stonefish](https://github.com/lmbalves/stonefish). Tested on Ubuntu 24.04 + ROS 2 Jazzy.
+
 This package delivers a ROS2 interface for the _Stonefish_ library. It also includes a standard simulator node, which loads the simulation scenario from a scenario description file (XML). The included parser extends the standard functionality of the _Stonefish_ library to enable search for files, resolution of parameters as well as a complete message interface. 
 
 ### Installation
