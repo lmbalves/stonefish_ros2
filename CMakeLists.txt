@@ -57,31 +57,33 @@ target_include_directories(stonefish_ros2_interface
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(stonefish_ros2_interface
- rclcpp 
- ament_index_cpp 
- std_srvs
- geometry_msgs
- nav_msgs
- visualization_msgs
- sensor_msgs
- PCL
- pcl_conversions
- image_transport
- tf2
- tf2_ros
+target_link_libraries(stonefish_ros2_interface
+  rclcpp::rclcpp
+  ament_index_cpp::ament_index_cpp
+  ${std_srvs_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${nav_msgs_TARGETS}
+  ${visualization_msgs_TARGETS}
+  ${sensor_msgs_TARGETS}
+  ${PCL_LIBRARIES}
+  pcl_conversions::pcl_conversions
+  image_transport::image_transport
+  tf2::tf2
+  tf2_ros::tf2_ros
 )
+target_include_directories(stonefish_ros2_interface SYSTEM PUBLIC ${PCL_INCLUDE_DIRS})
+target_compile_definitions(stonefish_ros2_interface PUBLIC ${PCL_DEFINITIONS})
 ament_export_libraries(stonefish_ros2_interface)
 ament_export_include_directories(include)
 
 # define exacutables
 add_executable(stonefish_simulator src/stonefish_simulator.cpp)
 target_link_libraries(stonefish_simulator stonefish_ros2_interface)
-ament_target_dependencies(stonefish_simulator rclcpp)
+target_link_libraries(stonefish_simulator rclcpp::rclcpp)
 
 add_executable(stonefish_simulator_nogpu src/stonefish_simulator_nogpu.cpp)
 target_link_libraries(stonefish_simulator_nogpu stonefish_ros2_interface)
-ament_target_dependencies(stonefish_simulator_nogpu rclcpp)
+target_link_libraries(stonefish_simulator_nogpu rclcpp::rclcpp)
 
 # installation
 install(

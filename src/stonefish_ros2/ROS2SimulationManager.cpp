@@ -168,7 +168,7 @@ void ROS2SimulationManager::BuildScenario()
     bool success = parser.Parse(scenarioPath_);
 
     // Save log
-    std::string logPath = rclcpp::get_logging_directory().string() + "/stonefish_ros2_parser.log";
+    std::string logPath = rclcpp::get_log_directory().string() + "/stonefish_ros2_parser.log";
     bool success2 = parser.SaveLog(logPath);
 
     if(!success)
